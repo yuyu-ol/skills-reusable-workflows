@@ -14,3 +14,11 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy to your project.
+
+  call-reusable-workflow:
+    strategy:
+      matrix:
+        nodeversion: [14, 16, 18, 20]  # 定义要在以下版本的 node 上运行的变量
+    uses: ./.github/workflows/reusable-workflow.yml
+    with:
+      node: ${{ matrix.nodeversion }}  # 使用 matrix 中的 nodeversion 变量
